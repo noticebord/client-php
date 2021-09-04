@@ -1,0 +1,21 @@
+{
+    "name": "noticebord/client",
+    "description": "The Official PHP client for Noticebord.",
+    "type": "library",
+    "require": {
+        "guzzlehttp/guzzle": "^7.3"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Noticebord\\Client\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "sixpeteunder",
+            "email": "plenjo15@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable"
+}
