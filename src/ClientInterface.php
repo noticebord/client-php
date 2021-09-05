@@ -28,7 +28,8 @@ interface ClientInterface
     /**
      * Attempts to authenticate.
      *
-     * @var $request The credentials to use to attempt authentication.
+     * @var \Noticebord\Client\Models\AuthenticateRequest $request
+     * The credentials to use to attempt authentication.
      *
      * Returns an auth token if authentication is successful, throws an error otherwise.
      */
@@ -37,7 +38,8 @@ interface ClientInterface
     /**
      * Attempts to create a new notice.
      *
-     * @var $request The details to use to attempt creation.
+     * @var \Noticebord\Client\Models\SaveNoticeRequest $request
+     * The details to use to attempt creation.
      *
      * Returns a notice if creation is successful, throws an error otherwise.
      */
@@ -46,7 +48,7 @@ interface ClientInterface
     /**
      * Attempts to get a single notice by its ID.
      *
-     * @var $id The id of the notice to fetch.
+     * @var int $id The id of the notice to fetch.
      *
      * Returns a notice if fetching is successful, throws an error otherwise.
      */
@@ -55,15 +57,16 @@ interface ClientInterface
     /**
      * Get an array of all the notices.
      *
-     * @return Noticebord\Client\Models\Notice[]
+     * @return \Noticebord\Client\Models\Notice[]
      */
     public function getNotices(): array;
 
     /**
      * Attempts to update a notice.
      *
-     * @var $id The id of the notice to update.
-     * @var $request The details to use to attempt update.
+     * @var int $id The id of the notice to update.
+     * @var \Noticebord\Client\Models\SaveNoticeRequest $request
+     * The details to use to attempt update.
      *
      * Returns a notice if updating is successful, throws an error otherwise.     *
      */
@@ -72,7 +75,7 @@ interface ClientInterface
     /**
      * Attempts to delete a notice.
      *
-     * @var $id The id of the notice to delete.
+     * @var int $id The id of the notice to delete.
      *
      * Returns a notice if deleting is successful, throws an error otherwise.     *
      */
