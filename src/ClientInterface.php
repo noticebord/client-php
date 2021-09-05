@@ -1,4 +1,4 @@
-<?
+<?php
 
 namespace Noticebord\Client;
 
@@ -11,7 +11,7 @@ interface ClientInterface
      * 
      * Should be used as a fallback in case a value is not explicitly provided.
      */
-    public const BASE_URL = "https://noticebord.herokuapp.com/api";
+    public const BASE_URL = "https://noticebord.herokuapp.com/api/";
 
     /**
      * Check whether the client in authenticated.

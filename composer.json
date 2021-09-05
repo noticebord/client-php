@@ -3,7 +3,8 @@
     "description": "The Official PHP client for Noticebord.",
     "type": "library",
     "require": {
-        "guzzlehttp/guzzle": "^7.3"
+        "guzzlehttp/guzzle": "^7.3",
+        "karriere/json-decoder": "^4.0"
     },
     "license": "MIT",
     "autoload": {
