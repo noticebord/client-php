@@ -3,8 +3,15 @@
     "description": "The Official PHP client for Noticebord.",
     "type": "library",
     "require": {
+        "php": ">=8.0",	
         "guzzlehttp/guzzle": "^7.3",
         "karriere/json-decoder": "^4.0"
+    },
+    "require-dev": {
+        "dealerdirect/phpcodesniffer-composer-installer": "^0.7.1",
+        "squizlabs/php_codesniffer": "3.*",
+        "phpcompatibility/php-compatibility": "^9.3",
+        "phpstan/phpstan": "^0.12.98"
     },
     "license": "MIT",
     "autoload": {
@@ -18,5 +25,15 @@
             "email": "plenjo15@gmail.com"
         }
     ],
-    "minimum-stability": "stable"
+    "minimum-stability": "stable",
+    "scripts": {
+        "code:analyse": "phpstan analyse",
+        "code:analyze": "@code:analyse",
+        "code:check": [
+            "@code:sniff",
+            "@code:analyse"
+        ],
+        "code:fix": "phpcbf -p .",
+        "code:sniff": "phpcs -p ."
+    }
 }
