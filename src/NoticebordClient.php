@@ -24,7 +24,7 @@ class NoticebordClient implements ClientInterface
             'base_uri' => $baseUrl,
             'headers' => ['Accept' => 'application/json']
         ]);
-        
+
         $this->decoder = new JsonDecoder();
         $this->decoder->register(new NoticeTransformer());
     }
@@ -39,7 +39,7 @@ class NoticebordClient implements ClientInterface
 
     /**
      * Get the auth token associated with this client.
-     * 
+     *
      * Returns a string if the client is authenticated, and null if it is not.
      */
     public function token(): ?string
@@ -49,10 +49,10 @@ class NoticebordClient implements ClientInterface
 
     /**
      * Attempts to authenticate.
-     * 
-     * @param Noticebord\Client\Models\AuthenticateRequest $request 
+     *
+     * @param Noticebord\Client\Models\AuthenticateRequest $request
      * The credentials to use to attempt authentication.
-     * 
+     *
      * Returns an auth token if authentication is successful, throws an error otherwise.
      */
     public function authenticate(AuthenticateRequest $request): string
@@ -65,10 +65,10 @@ class NoticebordClient implements ClientInterface
 
     /**
      * Attempts to create a new notice.
-     * 
-     * @param Noticebord\Client\Models\SaveNoticeRequest $request 
+     *
+     * @param Noticebord\Client\Models\SaveNoticeRequest $request
      * The details to use to attempt creation.
-     * 
+     *
      * Returns a notice if creation is successful, throws an error otherwise.
      */
     public function createNotice(SaveNoticeRequest $request): Notice
@@ -88,9 +88,9 @@ class NoticebordClient implements ClientInterface
 
     /**
      * Attempts to get a single notice by its ID.
-     * 
+     *
      * @param int $id The id of the notice to fetch.
-     * 
+     *
      * Returns a notice if fetching is successful, throws an error otherwise.
      */
     public function getNotice(int $id): Notice
@@ -102,11 +102,11 @@ class NoticebordClient implements ClientInterface
         return self::decodeNotice($json);
     }
 
-    /** 
+    /**
      * Attempts to get an array of all the notices.
-     * 
+     *
      * @return Noticebord\Client\Models\Notice[]
-     * 
+     *
      * Returns an array of notices if fetching is successful, throws an error otherwise.
      */
     public function getNotices(): array
@@ -120,11 +120,11 @@ class NoticebordClient implements ClientInterface
 
     /**
      * Attempts to update a notice.
-     * 
+     *
      * @param int $id The id of the notice to update.
      * @param Noticebord\Client\Models\SaveNoticeRequest $request The details to use to attempt update.
-     * 
-     * Returns a notice if updating is successful, throws an error otherwise.     * 
+     *
+     * Returns a notice if updating is successful, throws an error otherwise.     *
      */
     public function updateNotice(int $id, SaveNoticeRequest $request): Notice
     {
@@ -143,10 +143,10 @@ class NoticebordClient implements ClientInterface
 
     /**
      * Attempts to delete a notice.
-     * 
+     *
      * @param int $id The id of the notice to delete.
-     * 
-     * Returns a notice if deletion is successful, throws an error otherwise.     * 
+     *
+     * Returns a notice if deletion is successful, throws an error otherwise.     *
      */
     public function deleteNotice(int $id): Notice
     {
@@ -164,7 +164,7 @@ class NoticebordClient implements ClientInterface
 
     /**
      * Decode a notice object from JSON.
-     * 
+     *
      * @param string $json The JSON to decode.
      */
     private function decodeNotice(string $json): Notice
@@ -177,9 +177,9 @@ class NoticebordClient implements ClientInterface
 
     /**
      * Decode a list of notice objects from JSON.
-     * 
+     *
      * @param string $json The JSON to decode.
-     * 
+     *
      * @return Noticebord\Client\Models\Notice[]
      */
     private function decodeNotices(string $json): array
