@@ -1,9 +1,13 @@
 {
     "name": "noticebord/client",
-    "description": "The Official PHP client for Noticebord.",
+    "description": "The official PHP client for Noticebord.",
     "type": "library",
+    "keywords": [
+        "noticebord",
+        "client"
+    ],
     "require": {
-        "php": ">=8.0",	
+        "php": ">=8.0",
         "guzzlehttp/guzzle": "^7.3",
         "karriere/json-decoder": "^4.0"
     },
