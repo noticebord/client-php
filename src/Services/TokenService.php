@@ -1,11 +1,13 @@
 <?php
 
-use GuzzleHttp\{ Client, RequestOptions };
+namespace Noticebord\Client\Services;
+
+use GuzzleHttp\{Client, RequestOptions};
 use Noticebord\Client\Models\AuthenticateRequest;
 
 class TokenService
 {
-    static function getToken(string $baseUrl, AuthenticateRequest $request): string
+    public static function getToken(string $baseUrl, AuthenticateRequest $request): string
     {
         $client = new Client(['base_uri' => $baseUrl]);
         return $client

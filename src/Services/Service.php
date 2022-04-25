@@ -6,7 +6,7 @@ use GuzzleHttp\Client;
 
 abstract class Service
 {
-    const DEFAULT_BASE_URL = "https://noticebord.space/api";
+    public const DEFAULT_BASE_URL = "https://noticebord.space/api";
 
     protected Client $client;
 

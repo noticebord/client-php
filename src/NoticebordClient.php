@@ -8,13 +8,13 @@ use Noticebord\Client\{
     Models\AuthenticateRequest,
     Models\Notice,
     Models\SaveNoticeRequest,
+    Services\TokenService,
     Transformers\NoticeTransformer
 };
-use TokenService;
 
 class NoticebordClient
 {
-    const DEFAULT_BASE_URL = 'http://noticebord.space';
+    public const DEFAULT_BASE_URL = 'http://noticebord.space';
     private Client $client;
     private JsonDecoder $decoder;
 
