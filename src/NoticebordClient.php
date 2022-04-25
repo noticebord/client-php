@@ -10,41 +10,20 @@ use Noticebord\Client\{
     Models\SaveNoticeRequest,
     Transformers\NoticeTransformer
 };
+use TokenService;
 
-class NoticebordClient implements ClientInterface
+class NoticebordClient
 {
+    const DEFAULT_BASE_URL = 'http://noticebord.space';
     private Client $client;
     private JsonDecoder $decoder;
 
     public function __construct(
-        private ?string $token = null,
-        private ?string $baseUrl = self::BASE_URL
+        public string $token = '',
+        public string $baseUrl = self::DEFAULT_BASE_URL
     ) {
-        $this->client = new Client([
-            'base_uri' => $baseUrl,
-            'headers' => ['Accept' => 'application/json']
-        ]);
-
         $this->decoder = new JsonDecoder();
         $this->decoder->register(new NoticeTransformer());
-    }
-
-    /**
-     * Check whether the client in authenticated.
-     */
-    public function isLoggedIn(): bool
-    {
-        return $this->token !== null;
-    }
-
-    /**
-     * Get the auth token associated with this client.
-     *
-     * Returns a string if the client is authenticated, and null if it is not.
-     */
-    public function token(): ?string
-    {
-        return $this->token;
     }
 
     /**
@@ -55,12 +34,9 @@ class NoticebordClient implements ClientInterface
      *
      * Returns an auth token if authentication is successful, throws an error otherwise.
      */
-    public function authenticate(AuthenticateRequest $request): string
+    public function getToken(AuthenticateRequest $request): string
     {
-        return $this->client
-            ->post('tokens', [RequestOptions::JSON => $request])
-            ->getBody()
-            ->getContents();
+        return TokenService::getToken($this->baseUrl, $request);
     }
 
     /**
@@ -74,12 +50,7 @@ class NoticebordClient implements ClientInterface
     public function createNotice(SaveNoticeRequest $request): Notice
     {
         $json = $this->client
-            ->post('notices', [
-                RequestOptions::JSON => $request,
-                RequestOptions::HEADERS => [
-                    'Authorization' => $this->isLoggedIn() ? "Bearer $this->token" : ''
-                ]
-            ])
+            ->post('notices', [RequestOptions::JSON => $request])
             ->getBody()
             ->getContents();
 
@@ -129,12 +100,7 @@ class NoticebordClient implements ClientInterface
     public function updateNotice(int $id, SaveNoticeRequest $request): Notice
     {
         $json = $this->client
-            ->patch("notices/$id", [
-                RequestOptions::JSON => $request,
-                RequestOptions::HEADERS => [
-                    'Authorization' => $this->isLoggedIn() ? "Bearer $this->token" : ''
-                ]
-            ])
+            ->patch("notices/$id", [RequestOptions::JSON => $request])
             ->getBody()
             ->getContents();
 
@@ -151,11 +117,7 @@ class NoticebordClient implements ClientInterface
     public function deleteNotice(int $id): Notice
     {
         $json = $this->client
-            ->delete("notices/$id", [
-                RequestOptions::HEADERS => [
-                    'Authorization' => $this->isLoggedIn() ? "Bearer $this->token" : ''
-                ]
-            ])
+            ->delete("notices/$id")
             ->getBody()
             ->getContents();
 

@@ -1,6 +1,6 @@
 {
     "name": "noticebord/client",
-    "description": "The official PHP client for Noticebord.",
+    "description": "The official PHP client library for the Noticebord API.",
     "type": "library",
     "keywords": [
         "noticebord",
@@ -8,7 +8,7 @@
     ],
     "require": {
         "php": ">=8.0",
-        "guzzlehttp/guzzle": "^7.3",
+        "guzzlehttp/guzzle": "^7.4",
         "karriere/json-decoder": "^4.0"
     },
     "require-dev": {
@@ -39,5 +39,10 @@
         ],
         "code:fix": "phpcbf -p .",
         "code:sniff": "phpcs -p ."
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
     }
 }
